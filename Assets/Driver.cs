@@ -1,20 +1,21 @@
 using UnityEngine;
 
+// Handles the movement of the car, including speed and steering
 public class Driver : MonoBehaviour
 {
     [SerializeField] private float steerSpeed = 150;
 
-    [SerializeField] private float moveSpeed = 10;
-    [SerializeField] private float slowSpeed = 5;
+    [SerializeField] private float defaultSpeed = 10;
     [SerializeField] private float boostSpeed = 20;
 
     private float _currentSpeed;
 
     private void Start()
     {
-        _currentSpeed = moveSpeed;
+        _currentSpeed = defaultSpeed;
     }
 
+    // Is invoked if the car intersects with any other Collider2D that is marked with `IsTrigger = false`
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.CompareTag("Boost")) return;
@@ -23,13 +24,13 @@ public class Driver : MonoBehaviour
         _currentSpeed = boostSpeed;
     }
 
+    // Is invoked if the car intersects with any other Collider2D that is marked with `IsTrigger = true`
     private void OnCollisionEnter2D()
     {
         Debug.Log("Bump");
-        _currentSpeed = slowSpeed;
+        _currentSpeed = defaultSpeed;
     }
 
-    // Update is called once per frame
     private void Update()
     {
         var moveAmount = Input.GetAxis("Vertical") * _currentSpeed * Time.deltaTime;

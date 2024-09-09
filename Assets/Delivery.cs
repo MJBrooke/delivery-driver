@@ -1,5 +1,6 @@
 using UnityEngine;
 
+// Handles logic around picking up and dropping off packages
 public class Delivery : MonoBehaviour
 {
     [SerializeField] private Color32 hasPackageColour = new(207, 176, 54, 255);
@@ -10,12 +11,16 @@ public class Delivery : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
 
-    void Start()
+    private void Start()
     {
+        // This automatically fetches the SpriteRenderer component that this script is attached to.
+        // In this case, it gets a reference to the car's render.
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    // Is invoked if the car intersects with any other Collider2D that is marked with `IsTrigger = true`
+    // In this case, we setup triggers as a package to be collected and as a customer to be delivered to.
+    private void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.tag)
         {
