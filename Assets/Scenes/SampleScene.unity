@@ -4437,8 +4437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   steerSpeed: 150
-  moveSpeed: 10
-  slowSpeed: 5
+  defaultSpeed: 10
   boostSpeed: 20
 --- !u!212 &1637273715
 SpriteRenderer:
@@ -4532,7 +4531,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &1637273719
 MonoBehaviour:
